@@ -1,0 +1,6 @@
+<div>
+  <SearchJoke @onSearchSubmit="getSearchTextJoke" />
+  <div v-for="jokeitem in listJokes" :key="jokeitem.id">
+    <JokeItem v-bind:joke="jokeitem.joke" v-bind:id="jokeitem.id" />
+  </div>
+</div>

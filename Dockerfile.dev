@@ -1,0 +1,27 @@
+# Docker Container untuk testing Build Development
+FROM node:lts-buster
+
+WORKDIR /usr/app
+
+COPY ./package.json ./
+# COPY ./package-lock.json ./
+
+RUN npm install
+
+COPY ./ ./
+
+ENV HOST  0.0.0.0
+ENV PORT 3200
+EXPOSE 3200
+
+CMD ["npm", "run", "dev"]
+# Jalankan dengan perintah
+# docker build -t nuxtjoke:dev -f Dockerfile.dev ./
+# Buat container dengan menjalankan perintah di folder project ini
+# Redirect port dan docker volume dan docker volue anonymous
+# docker run -it --name nuxt-joke-container -p 3200:3200 -v /usr/app/node_modules -v $(pwd):/usr/app nuxtjoke:dev
+# Referensi lain
+# https://jonathanmh.com/deploying-a-nuxt-js-app-with-docker/
+# https://nuxtjs.org/faq/host-port/
+# https://github.com/nuxt/nuxt.js/issues/291
+# https://github.com/seongjoojin/nuxtjs-dockerfile/blob/master/Dockerfile
